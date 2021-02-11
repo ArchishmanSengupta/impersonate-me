@@ -40,6 +40,17 @@ const detect = async(net)=>{
     console.log(pose);
   }
 };
+
+const drawCanvas=(pose, video, videoWidth,videoHeight,canvas)=>{
+  const ctx= canvas.current.getContext("2d");
+  canvas.current.width= videoWidth;
+  canvas.current.height= videoHeight;
+
+  drawKeypoints(pose["keypoints"],0.5,ctx);
+  drawSkeleton(pose["keypoints"],0.5,ctx);
+};
+
+
 runPosenet();
 
 
