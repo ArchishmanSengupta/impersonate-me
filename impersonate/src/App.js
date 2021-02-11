@@ -21,8 +21,21 @@ const runPosenet = async () =>{
     scale:0.5
   })
 
-
 }
+const detect = async(net)=>{
+  if(typeof webcamRef.current !=="undefined" && webcamRef.current!==null && webcamRef.current.video.readyState===4){
+    const video = webcamRef.current.video
+    const videoWidth= webcamRef.current.video.videoWidth;
+    const videoHeight= webcamRef.current.video.videoHeight;
+
+    webcamRef.current.video.width= videoWidth;
+    webcamRef.current.video.height= videoHeight;
+
+    const pose= await net.estimateSinglePost(video);
+    console.log(pose);
+  }
+};
+
 
   
   return (
