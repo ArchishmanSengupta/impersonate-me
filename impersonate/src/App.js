@@ -21,6 +21,10 @@ const runPosenet = async () =>{
     scale:0.5
   })
 
+  //Posenet model and Neural network passing in the code
+  setInterval(()=>{
+    detect(net);
+  }, 100);
 }
 const detect = async(net)=>{
   if(typeof webcamRef.current !=="undefined" && webcamRef.current!==null && webcamRef.current.video.readyState===4){
@@ -31,10 +35,11 @@ const detect = async(net)=>{
     webcamRef.current.video.width= videoWidth;
     webcamRef.current.video.height= videoHeight;
 
-    const pose= await net.estimateSinglePost(video);
+    const pose= await net.estimateSinglePose(video);
     console.log(pose);
   }
 };
+runPosenet();
 
 
   
